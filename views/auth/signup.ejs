@@ -1,0 +1,15 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <h1>SIGN UP</h1>
+  <form action="/signup" method="POST">
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email">
+
+    <label for="passowrd">Password:</label>
+    <input type="password" name="password" id="password">
+
+    <button type="submit">Sign Up</button>
+  </form>
+<%- include('../includes/end.ejs') %>

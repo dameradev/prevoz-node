@@ -1,0 +1,13 @@
+<nav>
+  <a href="/tasks/task-list">Tasks</a>
+  
+
+  <% if (!isLoggedIn) { %>
+  <a href="/signup">Sign up</a>
+  <a href="/login">Login</a>
+  <% } else  { %>
+    <form action="/logout" method="POST">
+      <button type="submit" >Logout</button>
+    </form>
+  <% } %>
+</nav>
