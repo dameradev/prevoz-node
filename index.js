@@ -1,5 +1,5 @@
 const path = require('path');
-const MONGODB_URI = "mongodb://localhost/database-name";
+const MONGODB_URI = "mongodb://localhost/database-namegit";
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require("body-parser");
@@ -8,7 +8,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 
 //ROUTES
 const authRoutes = require('./routes/auth');
-const tasksRoutes = require('./routes/tasks');
+
 
 //MODELS
 const User = require('./models/user');
@@ -48,7 +48,7 @@ app.use(async(req, res, next) => {
 
 
 app.use(authRoutes);
-app.use('/tasks',tasksRoutes);
+
 
 app.use('/', (req, res, next) => {
   res.render('homepage', {
