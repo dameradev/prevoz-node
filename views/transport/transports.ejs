@@ -1,12 +1,13 @@
 <%- include('../includes/head.ejs') %>
 <link rel="stylesheet" href="/css/main.css">
+<script src="/js/transports.js"></script>
 </head>
 <body>
   <%- include('../includes/navigation.ejs') %>
   <div class="container">
     <div class="transports-container">
-      <div class="table-wrapper">
-        <table class="table transports-table">
+      <table class="table transports-table">
+        <div class="table-wrapper">
             <!-- TODO ADD PAGINATION FOR DAYS -->
             <h3 class="text-center"><%= new Date %></h3>
               <thead class="thead-dark">
@@ -20,13 +21,15 @@
               </thead>
             <tbody>
               <% transports.forEach(t=> { %>
-                  <tr>
-                    <!-- <th scope="row">1</th> -->
-                    <td><%= t.from %></td>
-                    <td><%= t.to %></td>
-                    <td><%= t.date %></td>
-                    <td><%= t.price %> ден.</td>
-                  </tr>
+                 
+                    <tr data-href="/transports/<%= t._id%>">
+                      <!-- <th scope="row">1</th> -->
+                      <td><%= t.from %></td>
+                      <td><%= t.to %></td>
+                      <td><%= t.date %></td>
+                      <td><%= t.price %> ден.</td>
+                    </tr>
+                  
               <% }) %>
             </tbody>
         </table>

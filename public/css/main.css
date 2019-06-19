@@ -13,7 +13,7 @@ nav {
   width: 70%;
   margin-left: 5rem;
 }
-thead tr { border: 1px solid grey; }
+
 tbody tr:nth-child(odd) {background-color: #5c93ed;}
 tbody tr:nth-child(even) {background-color: #3c67ad;}
 
@@ -24,8 +24,13 @@ tbody tr:nth-child(even) {background-color: #3c67ad;}
 }
 .auth-list li {
   display: inline-block;
+  margin-top:0.5rem;
 }
 
 .auth-list li a, .logout-btn {
   color: grey;
+}
+
+*[data-href] {
+  cursor: pointer;
 }

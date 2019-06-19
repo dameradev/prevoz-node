@@ -9,7 +9,18 @@ exports.getTransports = async (req, res, next) => {
     isLoggedIn: req.session.isLoggedIn,
     transports,
     days
-  })  
+  });  
+}
+
+exports.getTransport = async (req, res, next) => {
+  const id = req.params.id;
+  const transport = await Transport.findById({ _id: id });
+  res.render('transport/transport-details', {
+    pageTitle: "Превози",
+    path: '/transports',
+    isLoggedIn: req.session.isLoggedIn,
+    transport
+  });
 }
 
 
