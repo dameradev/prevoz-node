@@ -1,12 +1,34 @@
-<nav>
-  <a href="/transports">Превози</a>
-  <a href="/create-transport">Додај Превоз</a>
-  <% if (!isLoggedIn) { %>
-  <a href="/signup">Sign up</a>
-  <a href="/login">Login</a>
-  <% } else  { %>
-    <form action="/logout" method="POST">
-      <button type="submit" >Logout</button>
-    </form>
-  <% } %>
-</nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/transports">Превози</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link btn btn-outline-info" href="/create-transport">Додај Превоз</a>
+        </li>
+          
+        </ul>
+    </div>
+    
+      <ul class="navbav-nav text-justify auth-list">
+      <% if (!isLoggedIn) { %>
+        
+        <li class="nav-item">    
+          <a class="nav-link" href="/signup">Sign up</a>
+        </li>
+        <li class="nav-item">    
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+      <% } else  { %>
+        <li class="nav-item">
+          <form class="form-inline" action="/logout" method="POST">
+            <button class="nav-link logout-btn btn" type="submit" >Logout</button>
+          </form>
+        </li>
+      <% } %>
+    </ul>
+
+  </nav>

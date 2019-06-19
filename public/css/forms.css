@@ -1,8 +1,8 @@
 .create-transport-wrapper {
   text-align: center;
-  margin-right: 50rem;
-  margin-left: 50rem;
+  
 }
-.transport-form {
- display: inline-block;
-}
+
+ .transport-form {
+  display: inline-block;
+ }

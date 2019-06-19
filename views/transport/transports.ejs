@@ -5,30 +5,32 @@
   <%- include('../includes/navigation.ejs') %>
   <div class="container">
     <div class="transports-container">
-      <table class="table transports-table">
-          <!-- TODO ADD PAGINATION FOR DAYS -->
-          <h3 class="text-center"><%= new Date %></h3>
-            <thead class="thead-dark">
-              <tr>
-                <!-- <th scope="col">#</th> -->
-                <th scope="col">Поаѓање од:</th>
-                <th scope="col">Пристигнување во:</th>
-                <th scope="col">Час</th>
-                <th scope="col">Цена</th>
-              </tr>
-            </thead>
-          <tbody>
-            <% transports.forEach(t=> { %>
+      <div class="table-wrapper">
+        <table class="table transports-table">
+            <!-- TODO ADD PAGINATION FOR DAYS -->
+            <h3 class="text-center"><%= new Date %></h3>
+              <thead class="thead-dark">
                 <tr>
-                  <!-- <th scope="row">1</th> -->
-                  <td><%= t.from %></td>
-                  <td><%= t.to %></td>
-                  <td><%= days[t.date.getDay()] %> од <%= t.date.getHours()  %>:<%= t.date.getMinutes()  %> Часот</td>
-                  <td><%= t.price %> ден.</td>
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">Поаѓање од:</th>
+                  <th scope="col">Пристигнување во:</th>
+                  <th scope="col">Час</th>
+                  <th scope="col">Цена</th>
                 </tr>
-            <% }) %>
-          </tbody>
-      </table>
+              </thead>
+            <tbody>
+              <% transports.forEach(t=> { %>
+                  <tr>
+                    <!-- <th scope="row">1</th> -->
+                    <td><%= t.from %></td>
+                    <td><%= t.to %></td>
+                    <td><%= t.date %></td>
+                    <td><%= t.price %> ден.</td>
+                  </tr>
+              <% }) %>
+            </tbody>
+        </table>
+      </div>
     </div>
   </div>
 <%- include('../includes/end.ejs') %>

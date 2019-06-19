@@ -1,8 +1,12 @@
+nav {
+  margin-bottom: 5rem;
+}
 .transports-container {
-  
   border: solid grey 1px;
-  border-radius: 2%;
-  
+  box-shadow: 6px 7px 21px -8px rgba(66,66,66,1);
+}
+.table-wrapper {
+  padding-top:4rem;
 }
 
 .transports-table {
@@ -12,3 +16,16 @@
 thead tr { border: 1px solid grey; }
 tbody tr:nth-child(odd) {background-color: #5c93ed;}
 tbody tr:nth-child(even) {background-color: #3c67ad;}
+
+.auth-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.auth-list li {
+  display: inline-block;
+}
+
+.auth-list li a, .logout-btn {
+  color: grey;
+}
