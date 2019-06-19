@@ -3,12 +3,14 @@ const getFutureDates = require("../helpers/getFutureDates");
 
 exports.getTransports = async (req, res, next) => {
   const transports = await Transport.find({});
-  
+  const d = new Date();
+  const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
   res.render('transport/transports', {
     pageTitle: "Превози",
     path: '/transports',
     isLoggedIn: req.session.isLoggedIn,
     transports,
+    d,
     days
   });  
 }

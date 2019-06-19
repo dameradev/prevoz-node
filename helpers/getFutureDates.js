@@ -1,12 +1,12 @@
 module.exports = function() {
-var dates = []
-  var currentDate = new Date()
-  var endDate = new Date()
+  let dates = []
+  let currentDate = new Date()
+  let endDate = new Date()
   
   endDate.setFullYear(endDate.getFullYear()+1)
   
-  var addDays = function (days) {
-    var date = new Date(this.valueOf())
+  let addDays = function (days) {
+    let date = new Date(this.valueOf())
     date.setDate(date.getDate() + days)
     return date
   }

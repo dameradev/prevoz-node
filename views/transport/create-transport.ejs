@@ -25,7 +25,7 @@
         <label for="date">Дата:</label>
         <select class="form-control" name="date" id="date">
             <% dates.forEach(d => { %>
-              <option><%= days[d.getDay()] %>, <%= d.getDate() %>.<%= d.getMonth() %></option>
+              <option><%= days[d.getDay()] %>, <%= d.getDate() %>.<%= d.getMonth() %>.<%= d.getFullYear() %></option>
             <%})%>
         </select>
       </div>
