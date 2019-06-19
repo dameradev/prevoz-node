@@ -1,0 +1,14 @@
+.transports-container {
+  
+  border: solid grey 1px;
+  border-radius: 2%;
+  
+}
+
+.transports-table {
+  width: 70%;
+  margin-left: 5rem;
+}
+thead tr { border: 1px solid grey; }
+tbody tr:nth-child(odd) {background-color: #5c93ed;}
+tbody tr:nth-child(even) {background-color: #3c67ad;}

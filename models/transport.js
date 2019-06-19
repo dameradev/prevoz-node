@@ -6,7 +6,7 @@ const transportSchema = new Schema({
     type: String,
     enum: ['offer', 'seek'],
     default: 'offer',
-    // required: true
+    required: true
   },
   from: {
     type: String,

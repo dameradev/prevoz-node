@@ -37,7 +37,7 @@
           <label for="date">Дата и време:</label>
           
               <div class='input-group date' id='datetimepicker1'>
-                  <input type='text' class="form-control" />
+                  <input type='text' name="date" class="form-control" />
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -63,8 +63,7 @@
 
       <div class="form-group">
         <label for="comment">Коментар:</label>
-        <textarea class="form-control" name="comment" id="" cols="30" rows="10">
-        </textarea>
+        <textarea class="form-control" name="comment" id="" cols="30" rows="10"></textarea>
       </div>
 
       <input type="hidden" name="userId" id="userId" value="<%= userId %>">
