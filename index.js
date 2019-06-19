@@ -8,6 +8,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 
 //ROUTES
 const authRoutes = require('./routes/auth');
+const transportRoutes = require('./routes/transport');
 
 
 //MODELS
@@ -48,6 +49,7 @@ app.use(async(req, res, next) => {
 
 
 app.use(authRoutes);
+app.use(transportRoutes);
 
 
 app.use('/', (req, res, next) => {

@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const transportSchema = new Schema({
   type: {
     type: String,
+    enum: ['offer', 'seek'],
+    default: 'offer',
     required: true
   },
   from: {
@@ -43,7 +45,7 @@ const transportSchema = new Schema({
     required: true
   },
   userId: {
-    type: mongoose.Types.ObjectId(),
+    type: mongoose.Types.ObjectId,
     required: true,
     ref: 'User'
   }
