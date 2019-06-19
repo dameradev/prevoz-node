@@ -1,6 +1,25 @@
+/* NAVIGATION */
+
 nav {
   margin-bottom: 5rem;
 }
+
+.auth-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.auth-list li {
+  display: inline-block;
+  margin-top:0.5rem;
+}
+
+.auth-list li a, .logout-btn {
+  color: grey;
+}
+
+/* TRANSPORTS TABLE */
+
 .transports-container {
   border: solid grey 1px;
   box-shadow: 6px 7px 21px -8px rgba(66,66,66,1);
@@ -18,20 +37,25 @@ nav {
 thead tr {background-color: #70a6aa  !important; color: white}
 tbody tr:nth-child(even) {background-color:#e5e5e5}
 
-.auth-list {
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
-.auth-list li {
-  display: inline-block;
-  margin-top:0.5rem;
-}
-
-.auth-list li a, .logout-btn {
-  color: grey;
-}
-
 *[data-href] {
   cursor: pointer;
+}
+
+/* TRANSPORT - SEARCH */
+
+
+.search-title {
+  margin-bottom: 2rem;
+}
+
+.search-field-transport {
+  padding: 4rem;
+  margin-bottom: 2rem;
+  border: 1px solid #70a6aa;
+  
+}
+
+.search-btn {
+  margin-top: 2rem; 
+  margin-left: 6rem; 
 }

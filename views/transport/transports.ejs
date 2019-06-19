@@ -6,6 +6,26 @@
 <body>
   <%- include('../includes/navigation.ejs') %>
   <div class="container">
+    <div class="search-field-transport">
+      <h1 class="search-title">Најдете превоз</h1>
+      <form action="/search-transport" method="POST">
+        <div class="row">
+          <div class="col-md">
+              <label for="from">Од:</label>
+              <input name="from" class="form-control" type="text">
+          </div>
+          <div class="col-md">
+            <label for="to">До:</label>
+            <input name="to" class="form-control" type="text">
+          </div>
+          
+          <div class="col-md">
+            <button type="submit" class="search-btn btn btn-outline-info">Најди Превоз!</button>
+          </div>
+        </div>  
+      </form>      
+    </div>
+
     <div class="transports-container">
       <table class="table transports-table">
         <div class="table-wrapper">
@@ -22,7 +42,6 @@
               </thead>
             <tbody>
               <% transports.forEach(t=> { %>
-                 
                     <tr data-href="/transports/<%= t._id%>">
                       <!-- <th scope="row">1</th> -->
                       <td><%= t.from %></td>
