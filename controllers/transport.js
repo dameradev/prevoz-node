@@ -1,8 +1,9 @@
 const Transport = require('../models/transport');
+const getFutureDates = require("../helpers/getFutureDates");
 
 exports.getTransports = async (req, res, next) => {
   const transports = await Transport.find({});
-  const days = ["Четврток", "Петок", "Сабота", "Недела", "Понеделник", "Вторник", "Среда"];
+  
   res.render('transport/transports', {
     pageTitle: "Превози",
     path: '/transports',
@@ -28,23 +29,7 @@ exports.getTransport = async (req, res, next) => {
 exports.getCreateTransport = (req, res, next) => {
   const userId = req.user;
   const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
-  var dates = []
-  var currentDate = new Date()
-  var endDate = new Date()
-  
-  endDate.setFullYear(endDate.getFullYear()+1)
-  
-  var addDays = function (days) {
-    var date = new Date(this.valueOf())
-    date.setDate(date.getDate() + days)
-    return date
-  }
-  
-  while (currentDate <= endDate) {
-    dates.push(currentDate)
-    currentDate = addDays.call(currentDate, 1)
-  }
-      
+  const dates = getFutureDates();
   
 
   res.render('transport/create-transport', {
