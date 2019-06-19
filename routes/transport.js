@@ -6,11 +6,10 @@ const transportController = require('../controllers/transport');
 router.get('/transports/:id', transportController.getTransport);
 router.get('/transports', transportController.getTransports);
 
-
-
 router.get('/create-transport', transportController.getCreateTransport);
 router.post('/create-transport', transportController.postCreateTransport);
 
+router.post('/search-transport', transportController.searchTransport);
 
 
 module.exports = router;

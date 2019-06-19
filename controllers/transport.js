@@ -71,9 +71,30 @@ exports.postCreateTransport =  async (req, res, next) => {
     userId
   });
   await transport.save();
-
-
-
-
   res.redirect('/')
+}
+
+exports.searchTransport = async(req, res, next) => {
+  let from = "";
+  let to = "";
+  from = req.body.from;
+  to = req.body.to;
+  let transports = "";
+  if (from.length > 0 && to.length <= 0) {
+     transports = await Transport.find({from});
+  } else if(from.length <= 0 && to.length > 0) {
+     transports = await Transport.find({to});
+  } else {
+    transports = await Transport.find({from, to});
+  }
+  const d = new Date();
+  const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
+  res.render('transport/transports', {
+    pageTitle: "Превози",
+    path: '/transports',
+    isLoggedIn: req.session.isLoggedIn,
+    transports,
+    d,
+    days
+  });  
 }
