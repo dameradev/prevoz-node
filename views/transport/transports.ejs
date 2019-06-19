@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  
+  <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Поаѓање од:</th>
+          <th scope="col">Пристигнување во:</th>
+          <th scope="col">Час и датум</th>
+          <th scope="col">Цена</th>
+        </tr>
+      </thead>
+    <tbody>
+      <% transports.forEach(t=> { %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= t.from %></td>
+            <td><%= t.to %></td>
+            <td><%= t.date.getFullYear() %>.<%= t.date.getMonth() %>.<%= t.date.getDate() %>, <%= days[t.date.getDay()] %> | <%= t.date.getHours()  %>:<%= t.date.getMinutes()  %> Часот</td>
+            <td><%= t.price %></td>
+          </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<%- include('../includes/end.ejs') %>

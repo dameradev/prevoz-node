@@ -6,47 +6,47 @@ const transportSchema = new Schema({
     type: String,
     enum: ['offer', 'seek'],
     default: 'offer',
-    required: true
+    // required: true
   },
   from: {
     type: String,
-    required: true
+    // required: true
   },
   to: {
     type: String,
-    required: true
+    // required: true
   },
   date: {
     type: Date,
-    required: true
+    // required: true
   },
   time: {
     type: Date,
-    required: true
+    
   },
   price: {
     type: Number,
-    required: true
+    // required: true
   },
   passengers: {
     type: String,
-    required: true
+    // required: true
   },
   vechile: {
     type: String,
-    required: true
+    // required: true
   },
   phone: {
     type: String,
-    required: true
+    // required: true
   },
   comment: {
     type: String,
-    required: true
+    // required: true
   },
   userId: {
     type: mongoose.Types.ObjectId,
-    required: true,
+    // required: true,
     ref: 'User'
   }
 });
