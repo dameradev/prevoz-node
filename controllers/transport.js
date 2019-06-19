@@ -16,12 +16,33 @@ exports.getTransports = async (req, res, next) => {
 
 exports.getCreateTransport = (req, res, next) => {
   const userId = req.user;
+  const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
+  var dates = []
+  var currentDate = new Date()
+  var endDate = new Date()
+  
+  endDate.setFullYear(endDate.getFullYear()+1)
+  
+  var addDays = function (days) {
+    var date = new Date(this.valueOf())
+    date.setDate(date.getDate() + days)
+    return date
+  }
+  
+  while (currentDate <= endDate) {
+    dates.push(currentDate)
+    currentDate = addDays.call(currentDate, 1)
+  }
+      
+  
 
   res.render('transport/create-transport', {
     pageTitle: "Додај Превоз",
     path: '/create-transport',
     isLoggedIn: req.session.isLoggedIn,
-    userId
+    userId,
+    dates,
+    days
   })
 }
 
@@ -38,7 +59,7 @@ exports.postCreateTransport =  async (req, res, next) => {
   const comment = req.body.comment;
   const userId = req.user;
 
-  date = new Date(date)
+
   const transport = new Transport({
     type,
     from,

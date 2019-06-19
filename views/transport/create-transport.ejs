@@ -1,16 +1,5 @@
 <%- include('../includes/head.ejs') %>
 <link rel="stylesheet" href="/css/forms.css">
-
-<script>
-    
-    $(function () {
-      $('#datetimepicker1').datetimepicker({
-        format:'YYYY-MM-DDTHH:MM',
-        locale: 'mk',
-        
-      });
-            });
-    </script>
 </head>
 <body>
   <%- include('../includes/navigation.ejs') %>
@@ -32,17 +21,17 @@
         <label for="to">До:</label>
         <input class="form-control" type="text" name="to" id="to">
       </div>
-      
       <div class="form-group">
-          <label for="date">Дата и време:</label>
-          
-              <div class='input-group date' id='datetimepicker1'>
-                  <input type='text' name="date" class="form-control" />
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-          
+        <label for="date">Дата:</label>
+        <select class="form-control" name="date" id="date">
+            <% dates.forEach(d => { %>
+              <option><%= days[d.getDay()] %>, <%= d.getDate() %>.<%= d.getMonth() %></option>
+            <%})%>
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="time">Време:</label>
+          <input class="form-control" type="text" name="time" id="time">
       </div>
       <div class="form-group" >
         <label for="price">Цена:</label>
