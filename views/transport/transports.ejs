@@ -18,7 +18,14 @@
             <label for="to">До:</label>
             <input name="to" class="form-control" type="text">
           </div>
-          
+          <div class="col-md">
+              <label for="date">Дата:</label>
+              <select class="form-control" name="date" id="date">
+                  <% dates.forEach(d => { %>
+                    <option><%= days[d.getDay()] %>, <%= d.getDate() %>.<%= d.getMonth() + 1 %>.<%= d.getFullYear() %></option>
+                  <%})%>
+              </select>
+            </div>
           <div class="col-md">
             <button type="submit" class="search-btn btn btn-outline-info">Најди Превоз!</button>
           </div>
@@ -28,9 +35,13 @@
 
     <div class="transports-container">
       <table class="table transports-table">
-        <div class="table-wrapper">
+        <div class="table-wrapper"><%= %>
             <!-- TODO ADD PAGINATION FOR DAYS -->
-            <h3 class="text-center"><%= days[today.getDay()] %>, <%= today.getDate()  %>.<%= today.getMonth() + 1%>.<%= today.getFullYear() %></h3>
+            <h3 class="text-center">
+              <% if(search){%><%= days[today.getDay() - 1]%><%}else{%><%= days[today.getDay()]  %><% } %>,
+              <% if(search){%><%=  today.getDate() -1 %><%}else{%><%=  today.getDate()  %><% } %>.
+              <%= today.getMonth() + 1%>.<%= today.getFullYear() %>
+            </h3>
               <thead class="thead">
                 <tr>
                   <!-- <th scope="col">#</th> -->
