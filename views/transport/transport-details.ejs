@@ -1,6 +1,27 @@
 <%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
   <%- include('../includes/navigation.ejs') %>
-  <%= transport._id %>
+  <div class="container">
+    <div class="transport-details-wrapper">
+      <div class="row transport-details-inside">
+        <div class="col-md">
+          <h1 class="transport-details-title" > <%= transport.from %> - <%= transport.to %> </h1>
+          <h5><b>Цена:</b>  <%= transport.price %> <i>ден.</i> </h5>
+          <p> <b>Датум:</b> <%= days[transport.date.getDay()] %>, <%= transport.date.getDate() -1  %>.<%= transport.date.getMonth() + 1%>.<%= transport.date.getFullYear() %> од <%= transport.time %></p>
+          <p> <b>Слободни места:</b> <%= transport.passengers %> </p>
+          <p> <b>Возило:</b> <%= transport.vechile %></p>
+          <p> <b>Телефон:</b> <%= transport.phone %></p>
+          <p> <b>Коментар:</b> <%= transport.comment %></p>
+          <p> <b>Објавено од:</b> <%= transport.userId.email %></p>
+          <p> <b>Објавено:</b> <%= postedAgoInWords %> </p>
+        </div>
+        <div class="col-md">
+          
+        </div>        
+      </div>
+    </div>
+  </div>
+  
 <%- include('../includes/end.ejs') %>

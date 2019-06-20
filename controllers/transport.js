@@ -2,6 +2,7 @@ const Transport = require('../models/transport');
 const getFutureDates = require("../helpers/getFutureDates");
 const stringToDate = require("../helpers/stringToDate");
 const getTomorrow = require("../helpers/getTomorrow");
+const postedAgoInHours = require("../helpers/postedAgoInHours");
 
 
 // DECLARING VARIABLES FOR DAYS IN MACEDONIAN
@@ -30,12 +31,17 @@ exports.getTransports = async (req, res, next) => {
 
 exports.getTransport = async (req, res, next) => {
   const id = req.params.id;
-  const transport = await Transport.findById({ _id: id });
+  const transport = await Transport.findById({ _id: id }).populate('userId');
+  let postedAgo = transport._id.getTimestamp();
+  let postedAgoInWords = postedAgoInHours(postedAgo);
+  
   res.render('transport/transport-details', {
     pageTitle: "Превози",
     path: '/transports',
     isLoggedIn: req.session.isLoggedIn,
-    transport
+    transport,
+    days,
+    postedAgoInWords
   });
 }
 
@@ -133,7 +139,6 @@ exports.searchTransport = async(req, res, next) => {
     tommorow,
     days,
     sdays,
-    dates,
-    
+    dates
   });  
 }

@@ -1,3 +1,7 @@
+body {
+  background-color: #c8e7eb;
+}
+
 /* NAVIGATION */
 
 nav {
@@ -23,18 +27,20 @@ nav {
 .transports-container {
   border: solid grey 1px;
   box-shadow: 6px 7px 21px -8px rgba(66,66,66,1);
+  background-color: white;
 }
 .table-wrapper {
   padding-top:4rem;
+  
 }
 
 .transports-table {
   width: 70%;
   margin-left: 5rem;
-  border: solid #70a6aa 1px;
+  border: solid #00a5bb 1px;
 }
 
-thead tr {background-color: #70a6aa  !important; color: white}
+thead tr {background-color: #00a5bb  !important; color: white}
 tbody tr:nth-child(even) {background-color:#e5e5e5}
 
 *[data-href] {
@@ -52,10 +58,28 @@ tbody tr:nth-child(even) {background-color:#e5e5e5}
   padding: 4rem;
   margin-bottom: 2rem;
   border: 1px solid #70a6aa;
+  background-color: white;
   
 }
 
 .search-btn {
   margin-top: 2rem; 
   margin-left: 6rem; 
+}
+
+
+/* TRANSPORT DETAILS */
+
+.transport-details-wrapper {
+  border: 1px solid #00a5bb;
+  background-color: white;
+  box-shadow: 6px 7px 21px -8px rgba(66,66,66,1);
+}
+
+.transport-details-inside {
+  padding: 5rem;
+}
+
+.transport-details-title {
+  margin-bottom: 2rem;
 }
