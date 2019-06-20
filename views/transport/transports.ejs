@@ -30,7 +30,7 @@
       <table class="table transports-table">
         <div class="table-wrapper">
             <!-- TODO ADD PAGINATION FOR DAYS -->
-            <h3 class="text-center"><%= days[d.getDay()] %>, <%= d.getDate() %>.<%= d.getMonth() %>.<%= d.getFullYear() %></h3>
+            <h3 class="text-center"><%= days[today.getDay()] %>, <%= today.getDate()  %>.<%= today.getMonth() + 1%>.<%= today.getFullYear() %></h3>
               <thead class="thead">
                 <tr>
                   <!-- <th scope="col">#</th> -->
@@ -47,7 +47,7 @@
                       <!-- <th scope="row">1</th> -->
                       <td><%= t.from %></td>
                       <td><%= t.to %></td>
-                      <td><%= t.date %></td>
+                      <td><%= days[t.date.getDay() - 1] %>, <%= t.date.getDate() - 1 %>.<%= t.date.getMonth() + 1%>.<%= t.date.getFullYear() %></td>
                       <td><%= t.time %></td>
                       <td><%= t.price %> ден.</td>
                     </tr>

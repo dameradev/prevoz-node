@@ -17,7 +17,7 @@ const transportSchema = new Schema({
     // required: true
   },
   date: {
-    type: String,
+    type: Date,
     // required: true
   },
   time: {

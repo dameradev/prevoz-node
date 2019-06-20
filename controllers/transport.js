@@ -2,15 +2,20 @@ const Transport = require('../models/transport');
 const getFutureDates = require("../helpers/getFutureDates");
 
 exports.getTransports = async (req, res, next) => {
-  const transports = await Transport.find({});
-  const d = new Date();
+  const today = new Date();
+  let tommorow = new Date();
+  tommorow = tommorow.setDate(today.getDate() + 1);
+  tommorow = new Date(tommorow);
+ 
+  const transports = await Transport.find({date: {$gte: today, $lte: tommorow}});
+ 
   const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
   res.render('transport/transports', {
     pageTitle: "Превози",
     path: '/transports',
     isLoggedIn: req.session.isLoggedIn,
     transports,
-    d,
+    today,
     days
   });  
 }
@@ -58,7 +63,12 @@ exports.postCreateTransport =  async (req, res, next) => {
   const comment = req.body.comment;
   const userId = req.user;
 
-
+  let onlyDate = date.replace(/[^0-9.]/g, "");
+  const reversed = onlyDate.split(".").reverse().join(".");
+  date = new Date(reversed);
+  date.setDate(date.getDate() + 1)
+  
+  
   const transport = new Transport({
     type,
     from,
