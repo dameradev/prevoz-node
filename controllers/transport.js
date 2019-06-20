@@ -50,6 +50,7 @@ exports.postCreateTransport =  async (req, res, next) => {
   const from = req.body.from;
   const to = req.body.to;
   let date = req.body.date;
+  const time = req.body.time;
   const price = req.body.price;
   const passengers = req.body.passengers;
   const vechile = req.body.vechile;
@@ -65,6 +66,7 @@ exports.postCreateTransport =  async (req, res, next) => {
     date,
     price,
     passengers,
+    time,
     vechile,
     phone,
     comment,
