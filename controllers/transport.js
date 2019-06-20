@@ -1,17 +1,21 @@
 const Transport = require('../models/transport');
 const getFutureDates = require("../helpers/getFutureDates");
 const stringToDate = require("../helpers/stringToDate");
+const getTomorrow = require("../helpers/getTomorrow");
+
+
+// DECLARING VARIABLES FOR DAYS IN MACEDONIAN
+// DIFFERENT FOR SEARCHING AND DISPLAYING
+const days = ["Сабота", "Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок"];
+const sdays = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
 
 exports.getTransports = async (req, res, next) => {
-  const today = new Date();
-  let tommorow = new Date();
-  tommorow = tommorow.setDate(today.getDate() + 1);
-  tommorow = new Date(tommorow);
- 
-  const transports = await Transport.find({date: {$gte: today, $lte: tommorow}});
+  let today = new Date();
   
-  const dates = getFutureDates();
-  const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
+  const transports = await Transport.find({date : {$gte: today}}).sort({date: 1});
+  
+  const dates = getFutureDates(); // GETTING DATES FROM TODAY UP ONE YEAR
+  
   res.render('transport/transports', {
     pageTitle: "Превози",
     path: '/transports',
@@ -19,8 +23,8 @@ exports.getTransports = async (req, res, next) => {
     transports,
     today,
     days,
-    dates,
-    search: false
+    sdays,
+    dates
   });  
 }
 
@@ -39,17 +43,17 @@ exports.getTransport = async (req, res, next) => {
 
 exports.getCreateTransport = (req, res, next) => {
   const userId = req.user;
-  const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
+  
   const dates = getFutureDates();
   
-
+  
   res.render('transport/create-transport', {
     pageTitle: "Додај Превоз",
     path: '/create-transport',
     isLoggedIn: req.session.isLoggedIn,
     userId,
     dates,
-    days
+    sdays
   })
 }
 
@@ -89,15 +93,24 @@ exports.postCreateTransport =  async (req, res, next) => {
 
 exports.searchTransport = async(req, res, next) => {
   
-  let from = req.body.from;
-  let to = req.body.to;
+  const from = req.body.from;
+  const to = req.body.to;
   let date = req.body.date;
+
+
   let transports = "";
+  const dates = getFutureDates();
   date = stringToDate(date);
-  today = new Date (date);
-  let tommorow = new Date();
-  tommorow = tommorow.setDate(today.getDate() + 1);
-  tommorow = new Date(tommorow);
+  today = new Date(date);
+ 
+  const tommorow = getTomorrow(today); 
+ 
+
+  // DEPENDING ON SEARCH PARAMETERS FINDING EITHER 
+  // JUST THE "FROM" AND THE PROVIDED DATE
+  // JUST THE "TO" AND THE PROVIDED DATE
+  // BOTH AND THE DATE
+  // JUST THE DATE
 
   if (from.length > 0 && to.length <= 0) {
      transports = await Transport.find({from, date: {$gte: today, $lte: tommorow}});
@@ -110,16 +123,17 @@ exports.searchTransport = async(req, res, next) => {
   }
   
   
-  const dates = getFutureDates();
-  const days = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
+  
   res.render('transport/transports', {
     pageTitle: "Превози",
     path: '/search-transports',
     isLoggedIn: req.session.isLoggedIn,
     transports,
     today,
+    tommorow,
     days,
+    sdays,
     dates,
-    search: true
+    
   });  
 }

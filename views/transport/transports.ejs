@@ -22,7 +22,7 @@
               <label for="date">Дата:</label>
               <select class="form-control" name="date" id="date">
                   <% dates.forEach(d => { %>
-                    <option><%= days[d.getDay()] %>, <%= d.getDate() %>.<%= d.getMonth() + 1 %>.<%= d.getFullYear() %></option>
+                    <option><%= sdays[d.getDay()  ] %>, <%= d.getDate()  %>.<%= d.getMonth() + 1 %>.<%= d.getFullYear() %></option>
                   <%})%>
               </select>
             </div>
@@ -35,13 +35,9 @@
 
     <div class="transports-container">
       <table class="table transports-table">
-        <div class="table-wrapper"><%= %>
+        <div class="table-wrapper">
             <!-- TODO ADD PAGINATION FOR DAYS -->
-            <h3 class="text-center">
-              <% if(search){%><%= days[today.getDay() - 1]%><%}else{%><%= days[today.getDay()]  %><% } %>,
-              <% if(search){%><%=  today.getDate() -1 %><%}else{%><%=  today.getDate()  %><% } %>.
-              <%= today.getMonth() + 1%>.<%= today.getFullYear() %>
-            </h3>
+            <!-- <h3 class="text-center"><%= days[today.getDay()] %>, <%= today.getDate()  %>.<%= today.getMonth() %>.<%= today.getFullYear() %></h3> -->
               <thead class="thead">
                 <tr>
                   <!-- <th scope="col">#</th> -->
@@ -58,7 +54,7 @@
                       <!-- <th scope="row">1</th> -->
                       <td><%= t.from %></td>
                       <td><%= t.to %></td>
-                      <td><%= days[t.date.getDay() - 1] %>, <%= t.date.getDate() - 1 %>.<%= t.date.getMonth() + 1%>.<%= t.date.getFullYear() %></td>
+                      <td><%= days[t.date.getDay()] %>, <%= t.date.getDate() -1  %>.<%= t.date.getMonth() + 1%>.<%= t.date.getFullYear() %></td>
                       <td><%= t.time %></td>
                       <td><%= t.price %> ден.</td>
                     </tr>
