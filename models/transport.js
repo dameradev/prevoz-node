@@ -12,9 +12,17 @@ const transportSchema = new Schema({
     type: String,
     // required: true
   },
+  countryFrom: {
+    type: String,
+    default: "Македонија"
+  },
   to: {
     type: String,
     // required: true
+  },
+  countryTo: {
+    type: String,
+    default: "Македонија"
   },
   date: {
     type: Date,
@@ -44,11 +52,13 @@ const transportSchema = new Schema({
     type: String,
     // required: true
   },
+  
   userId: {
     type: mongoose.Types.ObjectId,
     // required: true,
     ref: 'User'
   }
+  
 });
 
 module.exports = mongoose.model("Transport", transportSchema);

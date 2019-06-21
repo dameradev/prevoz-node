@@ -9,6 +9,7 @@ const postedAgoInHours = require("../helpers/postedAgoInHours");
 // DIFFERENT FOR SEARCHING AND DISPLAYING
 const days = ["Сабота", "Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок"];
 const sdays = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
+const countries = ["Македонија", "Грција", "Бугарија", "Србија", "Хрватска", "БиХ", "Црна Гора", "Словенија", "Австрија",  "Германија",]
 
 exports.getTransports = async (req, res, next) => {
   let today = new Date();
@@ -59,7 +60,8 @@ exports.getCreateTransport = (req, res, next) => {
     isLoggedIn: req.session.isLoggedIn,
     userId,
     dates,
-    sdays
+    sdays,
+    countries
   })
 }
 
@@ -67,7 +69,9 @@ exports.getCreateTransport = (req, res, next) => {
 exports.postCreateTransport =  async (req, res, next) => {
   const type = req.body.type;
   const from = req.body.from;
+  const countryFrom = req.body.countryFrom;
   const to = req.body.to;
+  const countryTo = req.body.countryTo;
   let date = req.body.date;
   const time = req.body.time;
   const price = req.body.price;
@@ -83,7 +87,9 @@ exports.postCreateTransport =  async (req, res, next) => {
   const transport = new Transport({
     type,
     from,
+    countryFrom,
     to,
+    countryTo,
     date,
     price,
     passengers,

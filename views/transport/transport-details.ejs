@@ -8,7 +8,7 @@
       <div class="row transport-details-inside">
         <div class="col-md">
           <h1 class="transport-details-title" > <%= transport.from %> - <%= transport.to %> </h1>
-          <h5><b>Цена:</b>  <%= transport.price %> <i>ден.</i> </h5>
+          <p><b>Цена:</b>  <%= transport.price %> <i>ден.</i> </p>
           <p> <b>Датум:</b> <%= days[transport.date.getDay()] %>, <%= transport.date.getDate() -1  %>.<%= transport.date.getMonth() + 1%>.<%= transport.date.getFullYear() %> од <%= transport.time %></p>
           <p> <b>Слободни места:</b> <%= transport.passengers %> </p>
           <p> <b>Возило:</b> <%= transport.vechile %></p>

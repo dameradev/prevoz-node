@@ -13,13 +13,41 @@
       </select>
 
       <div class="form-group" >
-        <label for="from">Од:</label>
-        <input class="form-control" type="text" name="from" id="form">
+        <div class="row">
+          <div class="col-md">
+            <label for="to">До град:</label>
+            <input class="form-control" type="text" name="to" id="to">
+          </div>
+          <div class="col-md">
+            <label for="countryFrom">Држава</label>
+            <select class="form-control" name="countryTo" id="countryTo">
+              <% countries.forEach(c => { %>
+                <option value="<%= c %>"><%= c %></option>  
+              <% }) %>
+            </select>
+          </div>
+        </div>
       </div>
+      
+      <div class="form-group" >
+          <div class="row">
+            <div class="col-md">
+              <label for="from">Од град:</label>
+              <input class="form-control" type="text" name="from" id="form">
+            </div>
+            <div class="col-md">
+              <label for="countryFrom">Држава</label>
+              <select class="form-control" name="countryFrom" id="countryFrom">
+                <% countries.forEach(c => { %>
+                  <option value="<%= c %>"><%= c %></option>  
+                <% }) %>
+              </select>
+            </div>
+          </div>
+        </div>
 
       <div class="form-group" >
-        <label for="to">До:</label>
-        <input class="form-control" type="text" name="to" id="to">
+        
       </div>
       <div class="form-group">
         <label for="date">Дата:</label>

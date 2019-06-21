@@ -18,6 +18,8 @@
     "ejs": "^2.6.1",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
+    "google-auth-library": "^4.2.2",
+    "googleapis": "^40.0.0",
     "jquery": "^3.4.1",
     "mongoose": "^5.5.11",
     "path": "^0.12.7"

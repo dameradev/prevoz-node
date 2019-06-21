@@ -1,11 +1,16 @@
 body {
-  background-color: #c8e7eb;
+  background-color: #C6E0FF;
+  font-family: 'Lato', sans-serif;
 }
-
+h1,h2,h3,h4,h5,h6 {
+  
+font-family: 'Roboto', sans-serif;
+}
 /* NAVIGATION */
 
 nav {
   margin-bottom: 5rem;
+  background-color: #253031;
 }
 
 .auth-list {
@@ -37,11 +42,12 @@ nav {
 .transports-table {
   width: 70%;
   margin-left: 5rem;
-  border: solid #00a5bb 1px;
+  border: solid #2978A0 1px;
 }
 
-thead tr {background-color: #00a5bb  !important; color: white}
-tbody tr:nth-child(even) {background-color:#e5e5e5}
+thead tr {background-color: #315659  !important; color: white}
+tbody tr:hover {color:#BCAB79 }
+tbody tr:nth-child(even) {background-color:#C6E0FF}
 
 *[data-href] {
   cursor: pointer;
@@ -52,6 +58,7 @@ tbody tr:nth-child(even) {background-color:#e5e5e5}
 
 .search-title {
   margin-bottom: 2rem;
+  color: #00a5bb;
 }
 
 .search-field-transport {
@@ -82,4 +89,22 @@ tbody tr:nth-child(even) {background-color:#e5e5e5}
 
 .transport-details-title {
   margin-bottom: 2rem;
+}
+
+/* FOOTER */
+
+.page-footer {
+  background-color: #253031;
+  margin-top: 5rem; 
+  color: #C6E0FF; 
+}
+
+.page-footer a {
+  text-decoration: none;
+  color: #C6E0FF; 
+}
+
+.page-footer a:hover {
+  color:#BCAB79;
+  
 }

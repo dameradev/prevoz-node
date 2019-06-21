@@ -1,6 +1,19 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
+exports.getProfile = (req, res, next) => {
+  const user = req.session.user;
+
+  res.render("auth/profile", {
+    pageTitle: "Профил",
+    path: "/profile",
+    isLoggedIn: req.session.isLoggedIn,
+    user
+  })
+}
+
+
+
 exports.getSignup = (req, res, next) => {
   res.render('auth/signup', {
     pageTitle: 'Sign up',
