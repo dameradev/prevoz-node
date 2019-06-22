@@ -44,7 +44,26 @@ router.post(
 );
 
 router.get("/login", authController.getLogin);
-router.post("/login", authController.postLogin);
+router.post(
+  "/login",
+  [
+    body("email")
+      .isEmail()
+      .withMessage("Please enter a valid email")
+      .custom((value, { req }) => {
+        return User.findOne({ email: value }).then(userDoc => {
+          if (!userDoc) {
+            return Promise.reject("Invalid email or password");
+          }
+        });
+      }),
+    body("password")
+      .isLength({ min: 5 })
+      .trim()
+      .withMessage("Лозинката мора да биде најмалку 5 карактери.")
+  ],
+  authController.postLogin
+);
 router.post("/logout", authController.postLogout);
 
 module.exports = router;

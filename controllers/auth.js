@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
-const { validationResult } = require("express-validator/check");
+const { validationResult } = require("express-validator");
 
 exports.getProfile = (req, res, next) => {
   const user = req.session.user;
@@ -60,16 +60,39 @@ exports.postSignup = async (req, res, next) => {
 };
 
 exports.getLogin = (req, res, next) => {
+  let message = req.flash("error");
+  if (message) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+
   res.render("auth/login", {
     pageTitle: "Login",
     path: "/login",
-    isLoggedIn: req.session.isLoggedIn
+    isLoggedIn: req.session.isLoggedIn,
+    errorMessage: message,
+    oldInput: { email: "", name: "", password: "", confirmPassword: "" },
+    validationErrors: []
   });
 };
 
 exports.postLogin = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.render("auth/login", {
+      pageTitle: "Login",
+      path: "/login",
+      isLoggedIn: req.session.isLoggedIn,
+      errorMessage: errors.array()[0].msg,
+      oldInput: { email, password },
+      validationErrors: errors.array()
+    });
+  }
+
+  console.log("REACHED");
 
   let user = await User.findOne({ email });
 
@@ -84,6 +107,15 @@ exports.postLogin = async (req, res, next) => {
     req.session.user = user;
     await req.session.save();
     res.redirect("/");
+  } else {
+    return res.status(422).render("auth/login", {
+      path: "/login",
+      pageTitle: "Login",
+      errorMessage: "Invalid email or password.",
+      isLoggedIn: req.session.isLoggedIn,
+      oldInput: { email, password },
+      validationErrors: []
+    });
   }
 };
 
