@@ -38,7 +38,7 @@ exports.postSignup = async (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    res.render("auth/signup", {
+    return res.render("auth/signup", {
       pageTitle: "Sign up",
       path: "/signup",
       isLoggedIn: req.session.isLoggedIn,
@@ -48,16 +48,11 @@ exports.postSignup = async (req, res, next) => {
     });
   }
 
-  let user = await User.findOne({ email });
-
-  if (user) {
-    return res.redirect("/signup");
-  }
-
   const hashedPassword = await bcrypt.hash(password, 12);
 
-  user = new User({
+  const user = new User({
     email,
+    name,
     password: hashedPassword
   });
   await user.save();

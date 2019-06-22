@@ -2,25 +2,36 @@
 </head>
 <body>
   <%- include('../includes/navigation.ejs') %>
-  <h1>SIGN UP</h1>
-  <% if (errorMessage) { %>
-    <div class="user-error-message">
-      <p><%= errorMessage %></p>
+  <div class="container">
+    <div class="signup-wrapper text-center">
+      <h1>Регистрација</h1>
+      <% if (errorMessage) { %>
+        <div class="error-message">
+          <p><%= errorMessage %></p>
+        </div>
+      <% } %>
+      <form action="/signup" method="POST">
+        <div class="form-group">
+          <label for="email">Е-маил:</label>
+          <input class="form-control" type="email" name="email" id="email">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Корисничко име:</label>
+          <input class="form-control" type="text" name="name" id="name">
+        </div>
+
+        <div class="form-group">
+          <label for="passowrd">Лозинка:</label>
+          <input class="form-control" type="password" name="password" id="password">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Потврдете лозинка:</label>
+          <input class="form-control" type="password" name="confirmPassword" id="confirmPassword">
+        </div>
+        <button class="btn btn-info" type="submit">Регистрација</button>
+      </form>
     </div>
-  <% } %>
-  <form action="/signup" method="POST">
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email">
-
-    <label for="name">Username:</label>
-    <input type="text" name="name" id="name">
-
-    <label for="passowrd">Password:</label>
-    <input type="password" name="password" id="password">
-
-    <label for="confirmPassword">Password:</label>
-    <input type="password" name="confirmPassword" id="confirmPassword">
-
-    <button type="submit">Sign Up</button>
-  </form>
+  </div>
 <%- include('../includes/end.ejs') %>

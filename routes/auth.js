@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 
-const { check, body } = require("express-validator/check");
+const { check, body } = require("express-validator");
 
 const authController = require("../controllers/auth");
 
@@ -24,13 +24,13 @@ router.post(
       })
       .normalizeEmail(),
     body("name")
-      .isAlphanumeric()
       .isLength({ min: 5 })
       .withMessage("Username must be atleast 5 charachters"),
     body("password")
       .isLength({ min: 5 })
-      .isAlphanumeric()
-      .trim(),
+      .trim()
+      .withMessage("Лозинката мора да биде најмалку 5 карактери."),
+
     body("confirmPassword")
       .trim()
       .custom((value, { req }) => {

@@ -1,10 +1,14 @@
 body {
-  background-color: #C6E0FF;
-  font-family: 'Lato', sans-serif;
+  background-color: #c6e0ff;
+  font-family: "Lato", sans-serif;
 }
-h1,h2,h3,h4,h5,h6 {
-  
-font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
 }
 /* NAVIGATION */
 
@@ -20,10 +24,11 @@ nav {
 }
 .auth-list li {
   display: inline-block;
-  margin-top:0.5rem;
+  margin-top: 0.5rem;
 }
 
-.auth-list li a, .logout-btn {
+.auth-list li a,
+.logout-btn {
   color: grey;
 }
 
@@ -31,30 +36,35 @@ nav {
 
 .transports-container {
   border: solid grey 1px;
-  box-shadow: 6px 7px 21px -8px rgba(66,66,66,1);
+  box-shadow: 6px 7px 21px -8px rgba(66, 66, 66, 1);
   background-color: white;
 }
 .table-wrapper {
-  padding-top:4rem;
-  
+  padding-top: 4rem;
 }
 
 .transports-table {
   width: 70%;
   margin-left: 5rem;
-  border: solid #2978A0 1px;
+  border: solid #2978a0 1px;
 }
 
-thead tr {background-color: #315659  !important; color: white}
-tbody tr:hover {color:#BCAB79 }
-tbody tr:nth-child(even) {background-color:#C6E0FF}
+thead tr {
+  background-color: #315659 !important;
+  color: white;
+}
+tbody tr:hover {
+  color: #bcab79;
+}
+tbody tr:nth-child(even) {
+  background-color: #c6e0ff;
+}
 
 *[data-href] {
   cursor: pointer;
 }
 
 /* TRANSPORT - SEARCH */
-
 
 .search-title {
   margin-bottom: 2rem;
@@ -66,21 +76,19 @@ tbody tr:nth-child(even) {background-color:#C6E0FF}
   margin-bottom: 2rem;
   border: 1px solid #70a6aa;
   background-color: white;
-  
 }
 
 .search-btn {
-  margin-top: 2rem; 
-  margin-left: 6rem; 
+  margin-top: 2rem;
+  margin-left: 6rem;
 }
-
 
 /* TRANSPORT DETAILS */
 
 .transport-details-wrapper {
   border: 1px solid #00a5bb;
   background-color: white;
-  box-shadow: 6px 7px 21px -8px rgba(66,66,66,1);
+  box-shadow: 6px 7px 21px -8px rgba(66, 66, 66, 1);
 }
 
 .transport-details-inside {
@@ -95,16 +103,41 @@ tbody tr:nth-child(even) {background-color:#C6E0FF}
 
 .page-footer {
   background-color: #253031;
-  margin-top: 5rem; 
-  color: #C6E0FF; 
+  margin-top: 5rem;
+  color: #c6e0ff;
 }
 
 .page-footer a {
   text-decoration: none;
-  color: #C6E0FF; 
+  color: #c6e0ff;
 }
 
 .page-footer a:hover {
-  color:#BCAB79;
-  
+  color: #bcab79;
+}
+
+/* ERROR MESSAGE */
+
+.error-message {
+  border: 1px solid red;
+  background-color: #ea8383;
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.error-message p {
+  padding: 2rem;
+}
+
+/* SIGNUP/LOGIN */
+
+.signup-wrapper {
+  margin: 0 auto;
+  width: 50%;
+  background-color: white;
+  padding: 5rem;
+  border-radius: 5%;
+  box-shadow: 6px 7px 21px -8px rgba(66, 66, 66, 1);
 }
