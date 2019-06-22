@@ -106,7 +106,7 @@ exports.postLogin = async (req, res, next) => {
     req.session.isLoggedIn = true;
     req.session.user = user;
     await req.session.save();
-    res.redirect("/");
+    res.redirect("/transports");
   } else {
     return res.status(422).render("auth/login", {
       path: "/login",

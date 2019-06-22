@@ -15,6 +15,7 @@
     "bower": "^1.8.8",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.1.1",
+    "csurf": "^1.10.0",
     "datetimepicker": "^0.1.39",
     "ejs": "^2.6.1",
     "express": "^4.17.1",

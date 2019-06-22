@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const csrf = require("csurf");
 
 const flash = require("connect-flash");
 
@@ -22,6 +23,8 @@ const store = new MongoDBStore({
   collection: "sessions"
 });
 
+const csrfProtection = csrf();
+
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,6 +38,13 @@ app.use(
     store: store
   })
 );
+app.use(csrfProtection);
+
+app.use((req, res, next) => {
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
 app.use(flash());
 app.use(async (req, res, next) => {
   if (!req.session.user) {
