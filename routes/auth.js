@@ -9,6 +9,8 @@ const authController = require("../controllers/auth");
 router.get("/profiles/:id", authController.getUserProfile);
 router.get("/profile", authController.getProfile);
 
+router.post("/rate-user", authController.rateUser);
+
 router.get("/signup", authController.getSignup);
 router.post(
   "/signup",

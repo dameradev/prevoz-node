@@ -24,6 +24,17 @@ exports.getUserProfile = async (req, res, next) => {
   });
 };
 
+exports.rateUser = async (req, res, next) => {
+  const userId = req.body.userId;
+  const currentUser = req.user;
+  const rating = req.body.rate;
+  const userProfile = await User.findById(userId);
+
+  await userProfile.rate(currentUser._id, rating);
+
+  res.redirect(`/profiles/${userId}`);
+};
+
 exports.getSignup = (req, res, next) => {
   let message = req.flash("error");
   if (message) {
