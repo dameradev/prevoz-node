@@ -55,17 +55,16 @@ app.use(async (req, res, next) => {
   req.user = user;
   next();
 });
-
-app.use(authRoutes);
 app.use(transportRoutes);
+app.use(authRoutes);
 
-app.use("/", (req, res, next) => {
-  res.render("homepage", {
-    pageTitle: "Homepage",
-    path: "/home",
-    isLoggedIn: req.session.isLoggedIn
-  });
-});
+// app.use("/", (req, res, next) => {
+//   res.render("homepage", {
+//     pageTitle: "Homepage",
+//     path: "/home",
+//     isLoggedIn: req.session.isLoggedIn
+//   });
+// });
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).then(() => {
   console.log("Connected to mongoDb");
   app.listen(3000);

@@ -6,6 +6,7 @@ const { check, body } = require("express-validator");
 
 const authController = require("../controllers/auth");
 
+router.get("/profiles/:id", authController.getUserProfile);
 router.get("/profile", authController.getProfile);
 
 router.get("/signup", authController.getSignup);

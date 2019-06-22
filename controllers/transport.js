@@ -1,72 +1,96 @@
-const Transport = require('../models/transport');
+const Transport = require("../models/transport");
 const getFutureDates = require("../helpers/getFutureDates");
 const stringToDate = require("../helpers/stringToDate");
 const getTomorrow = require("../helpers/getTomorrow");
 const postedAgoInHours = require("../helpers/postedAgoInHours");
 
-
 // DECLARING VARIABLES FOR DAYS IN MACEDONIAN
 // DIFFERENT FOR SEARCHING AND DISPLAYING
-const days = ["Сабота", "Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок"];
-const sdays = ["Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота"];
-const countries = ["Македонија", "Грција", "Бугарија", "Србија", "Хрватска", "БиХ", "Црна Гора", "Словенија", "Австрија",  "Германија",]
+const days = [
+  "Сабота",
+  "Недела",
+  "Понеделник",
+  "Вторник",
+  "Среда",
+  "Четврток",
+  "Петок"
+];
+const sdays = [
+  "Недела",
+  "Понеделник",
+  "Вторник",
+  "Среда",
+  "Четврток",
+  "Петок",
+  "Сабота"
+];
+const countries = [
+  "Македонија",
+  "Грција",
+  "Бугарија",
+  "Србија",
+  "Хрватска",
+  "БиХ",
+  "Црна Гора",
+  "Словенија",
+  "Австрија",
+  "Германија"
+];
 
 exports.getTransports = async (req, res, next) => {
   let today = new Date();
-  
-  const transports = await Transport.find({date : {$gte: today}}).sort({date: 1});
-  
+
+  const transports = await Transport.find({ date: { $gte: today } }).sort({
+    date: 1
+  });
+
   const dates = getFutureDates(); // GETTING DATES FROM TODAY UP ONE YEAR
-  
-  res.render('transport/transports', {
+
+  res.render("transport/transports", {
     pageTitle: "Превози",
-    path: '/transports',
+    path: "/transports",
     isLoggedIn: req.session.isLoggedIn,
     transports,
     today,
     days,
     sdays,
     dates
-  });  
-}
+  });
+};
 
 exports.getTransport = async (req, res, next) => {
   const id = req.params.id;
-  const transport = await Transport.findById({ _id: id }).populate('userId');
+  const transport = await Transport.findById({ _id: id }).populate("userId");
   let postedAgo = transport._id.getTimestamp();
   let postedAgoInWords = postedAgoInHours(postedAgo);
-  
-  res.render('transport/transport-details', {
+
+  res.render("transport/transport-details", {
     pageTitle: "Превози",
-    path: '/transports',
+    path: "/transports",
     isLoggedIn: req.session.isLoggedIn,
     transport,
     days,
     postedAgoInWords
   });
-}
-
-
+};
 
 exports.getCreateTransport = (req, res, next) => {
   const userId = req.user;
-  
+
   const dates = getFutureDates();
-  
-  
-  res.render('transport/create-transport', {
+
+  res.render("transport/create-transport", {
     pageTitle: "Додај Превоз",
-    path: '/create-transport',
+    path: "/create-transport",
     isLoggedIn: req.session.isLoggedIn,
     userId,
     dates,
     sdays,
     countries
-  })
-}
+  });
+};
 
-
-exports.postCreateTransport =  async (req, res, next) => {
+exports.postCreateTransport = async (req, res, next) => {
   const type = req.body.type;
   const from = req.body.from;
   const countryFrom = req.body.countryFrom;
@@ -82,8 +106,7 @@ exports.postCreateTransport =  async (req, res, next) => {
   const userId = req.user;
 
   date = stringToDate(date);
-  
-  
+
   const transport = new Transport({
     type,
     from,
@@ -100,45 +123,52 @@ exports.postCreateTransport =  async (req, res, next) => {
     userId
   });
   await transport.save();
-  res.redirect('/')
-}
+  res.redirect("/");
+};
 
-exports.searchTransport = async(req, res, next) => {
-  
+exports.searchTransport = async (req, res, next) => {
   const from = req.body.from;
   const to = req.body.to;
   let date = req.body.date;
-
 
   let transports = "";
   const dates = getFutureDates();
   date = stringToDate(date);
   today = new Date(date);
- 
-  const tommorow = getTomorrow(today); 
- 
 
-  // DEPENDING ON SEARCH PARAMETERS FINDING EITHER 
+  const tommorow = getTomorrow(today);
+
+  // DEPENDING ON SEARCH PARAMETERS FINDING EITHER
   // JUST THE "FROM" AND THE PROVIDED DATE
   // JUST THE "TO" AND THE PROVIDED DATE
   // BOTH AND THE DATE
   // JUST THE DATE
 
   if (from.length > 0 && to.length <= 0) {
-     transports = await Transport.find({from, date: {$gte: today, $lte: tommorow}});
-  } else if(from.length <= 0 && to.length > 0) {
-     transports = await Transport.find({to, date: {$gte: today, $lte: tommorow}});
-  } else if (from.length > 0 || to.length > 0){
-    transports = await Transport.find({from, to, date: {$gte: today, $lte: tommorow}});
+    transports = await Transport.find({
+      from,
+      date: { $gte: today, $lte: tommorow }
+    });
+  } else if (from.length <= 0 && to.length > 0) {
+    transports = await Transport.find({
+      to,
+      date: { $gte: today, $lte: tommorow }
+    });
+  } else if (from.length > 0 || to.length > 0) {
+    transports = await Transport.find({
+      from,
+      to,
+      date: { $gte: today, $lte: tommorow }
+    });
   } else {
-    transports = await Transport.find({date: {$gte: today, $lte: tommorow}});
+    transports = await Transport.find({
+      date: { $gte: today, $lte: tommorow }
+    });
   }
-  
-  
-  
-  res.render('transport/transports', {
+
+  res.render("transport/transports", {
     pageTitle: "Превози",
-    path: '/search-transports',
+    path: "/search-transports",
     isLoggedIn: req.session.isLoggedIn,
     transports,
     today,
@@ -146,5 +176,5 @@ exports.searchTransport = async(req, res, next) => {
     days,
     sdays,
     dates
-  });  
-}
+  });
+};

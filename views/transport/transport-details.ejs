@@ -14,7 +14,7 @@
           <p> <b>Возило:</b> <%= transport.vechile %></p>
           <p> <b>Телефон:</b> <%= transport.phone %></p>
           <p> <b>Коментар:</b> <%= transport.comment %></p>
-          <p> <b>Објавено од:</b> <%= transport.userId.email %></p>
+          <p> <b>Објавено од:</b><a href="/profiles/<%= transport.userId._id %>"> <%= transport.userId.email %></a></p>
           <p> <b>Објавено:</b> <%= postedAgoInWords %> </p>
         </div>
         <div class="col-md">
