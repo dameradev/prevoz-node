@@ -3,12 +3,23 @@
 <body>
   <%- include('../includes/navigation.ejs') %>
   <h1>SIGN UP</h1>
+  <% if (errorMessage) { %>
+    <div class="user-error-message">
+      <p><%= errorMessage %></p>
+    </div>
+  <% } %>
   <form action="/signup" method="POST">
     <label for="email">Email:</label>
     <input type="email" name="email" id="email">
 
+    <label for="name">Username:</label>
+    <input type="text" name="name" id="name">
+
     <label for="passowrd">Password:</label>
     <input type="password" name="password" id="password">
+
+    <label for="confirmPassword">Password:</label>
+    <input type="password" name="confirmPassword" id="confirmPassword">
 
     <button type="submit">Sign Up</button>
   </form>
