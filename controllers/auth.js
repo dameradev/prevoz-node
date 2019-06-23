@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const Transport = require("../models/transport");
 const { validationResult } = require("express-validator");
 
 exports.getProfile = (req, res, next) => {
@@ -16,11 +17,14 @@ exports.getProfile = (req, res, next) => {
 exports.getUserProfile = async (req, res, next) => {
   const userId = req.params.id;
   const user = await User.findById(userId);
+  const transports = await Transport.find({ userId: userId });
+
   res.render("auth/userProfile", {
     pageTitle: "Профил",
     path: "/profile",
     isLoggedIn: req.session.isLoggedIn,
-    user
+    user,
+    transports
   });
 };
 
