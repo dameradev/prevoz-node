@@ -1,28 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  email: {
-    type: String,
-    required: true
-  },
-  name: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Rating" }],
-  averageRating: {
-    type: Number,
-    required: true,
-    default: 0
-  }
+const ratingSchema = new Schema({
+  individualRating: { type: Number, required: true, default: 0 },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Rating", ratingSchema);
+
 // function getAverage(arr) {
 //   const sum = arr.reduce(function(a, b) {
 //     return a + b;

@@ -12,6 +12,7 @@ const flash = require("connect-flash");
 //ROUTES
 const authRoutes = require("./routes/auth");
 const transportRoutes = require("./routes/transport");
+const ratingRoutes = require("./routes/rating");
 
 //MODELS
 const User = require("./models/user");
@@ -57,6 +58,7 @@ app.use(async (req, res, next) => {
 });
 app.use(transportRoutes);
 app.use(authRoutes);
+app.use(ratingRoutes);
 
 // app.use("/", (req, res, next) => {
 //   res.render("homepage", {
