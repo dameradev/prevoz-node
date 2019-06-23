@@ -24,6 +24,7 @@ function getAverage(arr) {
 
 exports.getUserProfile = async (req, res, next) => {
   const userId = req.params.id;
+  const currentUser = req.user;
   const user = await User.findById(userId).populate("ratings");
   const transports = await Transport.find({ userId: userId });
 
@@ -44,7 +45,8 @@ exports.getUserProfile = async (req, res, next) => {
     isLoggedIn: req.session.isLoggedIn,
     user,
     averageRating,
-    transports
+    transports,
+    currentUser
   });
 };
 

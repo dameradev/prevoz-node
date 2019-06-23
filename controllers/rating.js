@@ -6,10 +6,9 @@ exports.rateUser = async (req, res, next) => {
   const rate = req.body.rate;
   const currentUserId = req.user._id;
 
-  console.log(currentUserId);
   const user = await User.findById(userId);
   let rating = await Rating.findOne({ userId, currentUserId });
-  console.log(rating);
+
   if (!rating) {
     rating = new Rating({
       individualRating: rate,
