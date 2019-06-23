@@ -2,49 +2,20 @@
 <!-- I HAD TO ADD THE STYLESHEETS BECAUSE IT WAS A LINK FROM ANOTHER CONTROLLER -->
 <link rel="stylesheet" href="/css/main.css"> 
 <link rel="stylesheet" href="/css/rate.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
   <%- include('../includes/navigation.ejs') %>
 <div class="container">
-  <div class="myprofile-wrapper">
+  <div class="myprofile-wrapper">       
     <div class="row">
       <div class="col-md">
-        <h1><%= user.name %></h1>
-        <h1>CURRENT<%= currentUser.name %></h1>
-      </div>
-      <div class="col-md">      
-        <form class="rate" action="/rate-user" method="POST"> 
-          <div class="row">
-              <p>Average rating: <%= averageRating %></p>
-            <div class="rate col-md">
-              
-              <input type="radio" id="star5" name="rate" value="5" />
-              <label for="star5" title="text">5 stars</label>
-              <input type="radio" id="star4" name="rate" value="4" />
-              <label for="star4" title="text">4 stars</label>
-              <input type="radio" id="star3" name="rate" value="3" />
-              <label for="star3" title="text">3 stars</label>
-              <input type="radio" id="star2" name="rate" value="2" />
-              <label for="star2" title="text">2 stars</label>
-              <input type="radio" id="star1" name="rate" value="1" />
-              <label for="star1" title="text">1 star</label>
-              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-              <input type="hidden" name="userId" value="<%= user._id %>">            
-            </div>  
-            <div class="col-md">
-              <button class="btn btn-info" type="submit">Потврди оцена</button>
-            </div>         
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md">
-        <h3>Превози од <%= user.name %></h3>
         
-            <table class="table transports-table">
-              <div class="table-wrapper">
-                  
+        <h3 class="user-title"> <%= user.name %></h3>
+          <div class="user-table-wrapper">
+            <div class="user-transports-table-wrapper">
+            <table class="table user-table">
+                <h5 class="user-title"> Превози од <%= user.name %></h5>
                     <thead class="thead">
                       <tr>
                         <!-- <th scope="col">#</th> -->
@@ -61,7 +32,7 @@
                             <!-- <th scope="row">1</th> -->
                             <td><%= t.from %></td>
                             <td><%= t.to %></td>
-                            
+                            <td>d</td>
                             <td><%= t.time %></td>
                             <td><%= t.price %> ден.</td>
                           </tr>
@@ -70,8 +41,51 @@
                   </tbody>
               </table>
             </div>
-      </div>
-    
+            
+          </div>
+        </div>
+
+      <form class="rate" action="/rate-user" method="POST"> 
+        <div class="col-md"><p>Просечна оцена: <%= averageRating %></p></div>
+        <div class="col-md">
+          <textarea class="form-control" name="comment" id="comment" cols="30" rows="10"></textarea>
+        </div>
+        <div class="col-md star-rating">
+          <input id="star-5" type="radio" name="rate" value="5">
+          <label for="star-5" title="5 stars">
+              <i class="active fa fa-star" aria-hidden="true"></i>
+          </label>
+          <input id="star-4" type="radio" name="rate" value="4">
+          <label for="star-4" title="4 stars">
+              <i class="active fa fa-star" aria-hidden="true"></i>
+          </label>
+          <input id="star-3" type="radio" name="rate" value="3">
+          <label for="star-3" title="3 stars">
+              <i class="active fa fa-star" aria-hidden="true"></i>
+          </label>
+          <input id="star-2" type="radio" name="rate" value="2">
+          <label for="star-2" title="2 stars">
+              <i class="active fa fa-star" aria-hidden="true"></i>
+          </label>
+          <input id="star-1" type="radio" name="rate" value="1">
+          <label for="star-1" title="1 star">
+              <i class="active fa fa-star" aria-hidden="true"></i>
+          </label>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <input type="hidden" name="userId" value="<%= user._id %>">            
+        </div>
+        <div class="col-md">
+          <button class="btn btn-info" type="submit">Потврди оцена</button>  
+        </div>
+      </form>
+    </div>  
+  </div>
+</div>
+
+
+    <div class="row">
+      <div class="col-md">
+        
   </div>
 </div>
   

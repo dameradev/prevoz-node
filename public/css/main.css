@@ -56,7 +56,7 @@ thead tr {
 tbody tr:hover {
   color: #bcab79;
 }
-tbody tr:nth-child(even) {
+tbody tr:nth-child(odd) {
   background-color: #c6e0ff;
 }
 
@@ -140,4 +140,16 @@ tbody tr:nth-child(even) {
   padding: 5rem;
   border-radius: 5%;
   box-shadow: 6px 7px 21px -8px rgba(66, 66, 66, 1);
+}
+
+/* USER PROFILE */
+.user-title {
+  margin-bottom: 2rem;
+}
+.user-table-wrapper {
+  background: white;
+}
+
+.user-transports-table-wrapper {
+  padding: 4rem;
 }

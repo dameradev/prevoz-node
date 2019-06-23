@@ -2,9 +2,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ratingSchema = new Schema({
-  individualRating: { type: Number, required: true, default: 0 },
-  currentUserId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
+  comment: {
+    type: String
+  },
+  individualRating: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  currentUserId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }
 });
 
 module.exports = mongoose.model("Rating", ratingSchema);
