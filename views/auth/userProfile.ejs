@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="/css/main.css"> 
 <link rel="stylesheet" href="/css/rate.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="/js/stars.js"> </script>
 </head>
 <body>
   <%- include('../includes/navigation.ejs') %>
@@ -10,41 +11,52 @@
   <div class="myprofile-wrapper">       
     <div class="row">
       <div class="col-md">
-        
         <h3 class="user-title"> <%= user.name %></h3>
           <div class="user-table-wrapper">
             <div class="user-transports-table-wrapper">
-            <table class="table user-table">
-                <h5 class="user-title"> Превози од <%= user.name %></h5>
-                    <thead class="thead">
-                      <tr>
-                        <!-- <th scope="col">#</th> -->
-                        <th scope="col">Поаѓање од</th>
-                        <th scope="col">Пристигнување во</th>
-                        <th scope="col">Датум</th>
-                        <th scope="col">Час</th>
-                        <th scope="col">Цена</th>
-                      </tr>
-                    </thead>
-                  <tbody>
-                    <% transports.forEach(t=> { %>
-                          <tr data-href="/transports/<%= t._id%>">
-                            <!-- <th scope="row">1</th> -->
-                            <td><%= t.from %></td>
-                            <td><%= t.to %></td>
-                            <td>d</td>
-                            <td><%= t.time %></td>
-                            <td><%= t.price %> ден.</td>
-                          </tr>
-                        
-                    <% }) %>
-                  </tbody>
-              </table>
+              <table class="table user-table">
+                  <h5 class="user-title"> Превози од <%= user.name %></h5>
+                      <thead class="thead">
+                        <tr>
+                          <!-- <th scope="col">#</th> -->
+                          <th scope="col">Поаѓање од</th>
+                          <th scope="col">Пристигнување во</th>
+                          <th scope="col">Датум</th>
+                          <th scope="col">Час</th>
+                          <th scope="col">Цена</th>
+                        </tr>
+                      </thead>
+                    <tbody>
+                      <% transports.forEach(t=> { %>
+                            <tr data-href="/transports/<%= t._id%>">
+                              <!-- <th scope="row">1</th> -->
+                              <td><%= t.from %></td>
+                              <td><%= t.to %></td>
+                              <td>d</td>
+                              <td><%= t.time %></td>
+                              <td><%= t.price %> ден.</td>
+                            </tr>
+                          
+                      <% }) %>
+                    </tbody>
+                </table>
+                <div>
+                  <h5 class="ratings-title">Оцени од други корисници:</h5>
+                  <% ratings.forEach((r, i) => { %>
+                    <div class="user-rating" data-docs="<%= ratings.length %>" >
+                      <p> <b>Коментар:</b> <%= r.comment %> </p>
+                      <p> <b>Оцена:</b> <%=r.individualRating %> </p>
+                      
+                      <div data-stars="<%= r.individualRating %>" class="star-rating-<%= i+1 %>"></div>
+                      <small class="text-muted">Постирано од: <%= r.currentUserId.name %></small>
+                    </div>
+                  <% }) %>
+                </div>
+                
+              </div>
             </div>
-            
           </div>
-        </div>
-
+      
       <form class="rate" action="/rate-user" method="POST"> 
         <div class="col-md"><p>Просечна оцена: <%= averageRating %></p></div>
         <div class="col-md">
@@ -83,10 +95,6 @@
 </div>
 
 
-    <div class="row">
-      <div class="col-md">
-        
-  </div>
-</div>
+    
   
 <%- include('../includes/end.ejs') %>

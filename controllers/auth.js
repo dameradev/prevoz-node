@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const Transport = require("../models/transport");
+const Rating = require("../models/rating");
 const { validationResult } = require("express-validator");
 
 exports.getProfile = (req, res, next) => {
@@ -24,8 +25,10 @@ function getAverage(arr) {
 
 exports.getUserProfile = async (req, res, next) => {
   const userId = req.params.id;
-  const currentUser = req.user;
+
   const user = await User.findById(userId).populate("ratings");
+  const ratings = await Rating.find({ userId }).populate("currentUserId");
+
   const transports = await Transport.find({ userId: userId });
 
   if (user.ratings.length > 0) {
@@ -46,7 +49,7 @@ exports.getUserProfile = async (req, res, next) => {
     user,
     averageRating,
     transports,
-    currentUser
+    ratings
   });
 };
 

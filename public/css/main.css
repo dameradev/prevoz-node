@@ -153,3 +153,22 @@ tbody tr:nth-child(odd) {
 .user-transports-table-wrapper {
   padding: 4rem;
 }
+
+.user-table {
+  border: solid #2978a0 1px;
+  margin-bottom: 2rem;
+}
+
+.ratings-title {
+  margin-bottom: 2rem;
+}
+.user-rating {
+  padding: 1.5rem;
+  border: 1px solid #2978a0;
+  width: 70%;
+  margin-bottom: 2rem;
+}
+
+.yellow {
+  color: #f2b600;
+}

@@ -4,6 +4,7 @@ const User = require("../models/user");
 exports.rateUser = async (req, res, next) => {
   const userId = req.body.userId;
   const rate = req.body.rate;
+  const comment = req.body.comment;
   const currentUserId = req.user._id;
 
   const user = await User.findById(userId);
@@ -13,7 +14,8 @@ exports.rateUser = async (req, res, next) => {
     rating = new Rating({
       individualRating: rate,
       currentUserId: currentUserId,
-      userId
+      userId,
+      comment
     });
     await user.addRating(rating._id);
   } else {
