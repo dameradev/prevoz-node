@@ -14,16 +14,36 @@ exports.getProfile = (req, res, next) => {
   });
 };
 
+function getAverage(arr) {
+  const sum = arr.reduce(function(a, b) {
+    return a + b;
+  });
+  const avg = sum / arr.length;
+  return avg;
+}
+
 exports.getUserProfile = async (req, res, next) => {
   const userId = req.params.id;
-  const user = await User.findById(userId);
+  const user = await User.findById(userId).populate("ratings");
   const transports = await Transport.find({ userId: userId });
+
+  if (user.ratings.length > 0) {
+    const ratingsArray = [];
+    user.ratings.forEach(rating => {
+      ratingsArray.push(rating.individualRating);
+    });
+
+    user.averageRating = getAverage(ratingsArray);
+    await user.save();
+  }
+  var averageRating = Math.round(user.averageRating * 10) / 10;
 
   res.render("auth/userProfile", {
     pageTitle: "Профил",
     path: "/profile",
     isLoggedIn: req.session.isLoggedIn,
     user,
+    averageRating,
     transports
   });
 };

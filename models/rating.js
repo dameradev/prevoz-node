@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const ratingSchema = new Schema({
   individualRating: { type: Number, required: true, default: 0 },
+  currentUserId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 });
 

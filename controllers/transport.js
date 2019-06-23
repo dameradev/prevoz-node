@@ -123,7 +123,7 @@ exports.postCreateTransport = async (req, res, next) => {
     userId
   });
   await transport.save();
-  res.redirect("/");
+  res.redirect("/transports");
 };
 
 exports.searchTransport = async (req, res, next) => {
