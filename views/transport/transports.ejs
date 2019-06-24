@@ -27,7 +27,7 @@
               </select>
             </div>
           <div class="col-md">
-            <button type="submit" class="search-btn btn btn-outline-danger">Најди Превоз!</button>
+            <button type="submit" class="search-btn btn btn-outline-info">Најди Превоз!</button>
           </div>
         </div>  
       </form>      
@@ -55,7 +55,7 @@
                       <td><%= t.from %></td>
                       <td><%= t.to %></td>
                       <td><%= days[t.date.getDay()] %>, <%= t.date.getDate() -1  %>.<%= t.date.getMonth() + 1%>.<%= t.date.getFullYear() %></td>
-                      <td><%= t.time %></td>
+                      <td><%= t.time.getHours() %>:<%= t.time.getMinutes() %></td>
                       <td><%= t.price %> ден.</td>
                     </tr>
                   

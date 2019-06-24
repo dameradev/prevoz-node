@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const transportSchema = new Schema({
   type: {
     type: String,
-    enum: ['offer', 'seek'],
-    default: 'offer',
+    enum: ["offer", "seek"],
+    default: "offer",
     required: true
   },
   from: {
-    type: String,
+    type: String
     // required: true
   },
   countryFrom: {
@@ -17,7 +17,7 @@ const transportSchema = new Schema({
     default: "Македонија"
   },
   to: {
-    type: String,
+    type: String
     // required: true
   },
   countryTo: {
@@ -25,40 +25,38 @@ const transportSchema = new Schema({
     default: "Македонија"
   },
   date: {
-    type: Date,
+    type: Date
     // required: true
   },
   time: {
-    type: String,
-    
+    type: Date
   },
   price: {
-    type: Number,
+    type: Number
     // required: true
   },
   passengers: {
-    type: String,
+    type: String
     // required: true
   },
   vechile: {
-    type: String,
+    type: String
     // required: true
   },
   phone: {
-    type: String,
+    type: String
     // required: true
   },
   comment: {
-    type: String,
+    type: String
     // required: true
   },
-  
+
   userId: {
     type: mongoose.Types.ObjectId,
     // required: true,
-    ref: 'User'
+    ref: "User"
   }
-  
 });
 
 module.exports = mongoose.model("Transport", transportSchema);

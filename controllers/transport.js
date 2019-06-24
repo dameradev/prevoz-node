@@ -41,7 +41,8 @@ exports.getTransports = async (req, res, next) => {
   let today = new Date();
 
   const transports = await Transport.find({ date: { $gte: today } }).sort({
-    date: 1
+    date: 1,
+    time: 1
   });
 
   const dates = getFutureDates(); // GETTING DATES FROM TODAY UP ONE YEAR
@@ -76,7 +77,6 @@ exports.getTransport = async (req, res, next) => {
 
 exports.getCreateTransport = (req, res, next) => {
   const userId = req.user;
-
   const dates = getFutureDates();
 
   res.render("transport/create-transport", {
@@ -97,7 +97,7 @@ exports.postCreateTransport = async (req, res, next) => {
   const to = req.body.to;
   const countryTo = req.body.countryTo;
   let date = req.body.date;
-  const time = req.body.time;
+  let time = req.body.time;
   const price = req.body.price;
   const passengers = req.body.passengers;
   const vechile = req.body.vechile;
@@ -105,8 +105,12 @@ exports.postCreateTransport = async (req, res, next) => {
   const comment = req.body.comment;
   const userId = req.user;
 
-  date = stringToDate(date);
+  time = time.match(/\d+/g);
+  let hours = +time[0];
+  let minutes = +time[1];
 
+  time = new Date(2019, 01, 11, hours, minutes);
+  date = stringToDate(date);
   const transport = new Transport({
     type,
     from,
